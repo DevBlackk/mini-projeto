@@ -7,4 +7,3 @@ app.use(express.json());
 // app.use(encodeURI());
 
 app.listen(PORT, () => console.log(`Server running at ${PORT}`));
-
