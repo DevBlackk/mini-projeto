@@ -18,6 +18,8 @@ model User {
   username     String
   email        String         @unique
   password     String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @default(now())
   Post         Post[]
   RefreshToken RefreshToken[]
 
@@ -25,10 +27,26 @@ model User {
 }
 
 model Post {
-  id      String @id @default(cuid())
-  content String
-  user    User   @relation(fields: [userId], references: [id])
-  userId  String
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  Image     Image[]
+
+  @@map("post")
+}
+
+model Image {
+  id         String   @id @default(cuid())
+  name       String
+  type       String
+  url        String
+  publicId   String
+  created_at DateTime @default(now())
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     String
 }
 
 model RefreshToken {

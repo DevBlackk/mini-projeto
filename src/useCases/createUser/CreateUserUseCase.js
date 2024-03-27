@@ -3,7 +3,7 @@ import { hash } from "bcrypt";
 import { client } from "../../config/prisma/prisma.js";
 
 class CreateUserCase {
-    async execute({ username, password, email }) {
+    async execute(username, password, email) {
         const userAlreadyExists = await client.user.findFirst({
             where: {
                 email: email,
