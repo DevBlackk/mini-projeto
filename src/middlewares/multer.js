@@ -1,12 +1,28 @@
 import multer from "multer";
 
 const storage = multer.diskStorage({
-    filename: (req, file, cb) => {
-        cb(null, file.originalname, );
-    }
-});
-const upload = multer({
-    storage: storage,
-}).single('image')
+    filename: (request, file, callback) => {
+        let fileExt = file.originalname.split(".").pop();
 
-export { upload };
+        const fileName = `${new Date().getTime}.${fileExt}`;
+
+        callback(null, fileName);
+    },
+});
+
+const fileFilter = (request, file, callback) => {
+    if (file.mimetype === "image/jpeg" || file.mimetype === "image/png") {
+        req.fileValidationError = "File type must be image/jpeg or image/png";
+
+        return callback(null, false, req.fileValidationError);
+    } else {
+        callback(null, true);
+    }
+};
+
+const upload = multer({
+    storage,
+    fileFilter,
+}).single("image");
+
+export default upload;
