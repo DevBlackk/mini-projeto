@@ -1,15 +1,15 @@
-import { client } from '../../config/prisma/prisma.js'
+import { client } from "../../config/prisma/prisma.js";
 
 class CreatePostUseCase {
-    async execute(content, publicId, url) {
+    async execute(content) {
         const post = await client.post.create({
             data: {
                 content,
-                publicId,
-                url,
-            }
-        })
+            },
+        });
 
         return post;
     }
 }
+
+export { CreatePostUseCase }

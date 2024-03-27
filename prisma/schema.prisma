@@ -47,6 +47,8 @@ model Image {
   created_at DateTime @default(now())
   post       Post     @relation(fields: [postId], references: [id])
   postId     String
+
+  @@map("image")
 }
 
 model RefreshToken {
