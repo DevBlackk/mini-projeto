@@ -1,4 +1,4 @@
-import { verify } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -15,7 +15,7 @@ function ensureAuthenticated(request, response, next) {
     const [, token] = authToken.split(" ");
 
     try {
-        verify(token, process.env.TOKEN_KEY);
+        jwt.verify(token, process.env.TOKEN_KEY);
 
         return next();
     } catch (error) {
