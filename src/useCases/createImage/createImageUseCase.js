@@ -1,7 +1,8 @@
 import cloudinary from "../../config/cloudinary/cloudinary.js";
+import { client } from "../../config/prisma/prisma.js";
 
 class CreateImageUseCase {
-    async cloudinaryUploader(request, response) {
+    async execute(request, response) {
         const file = request.file;
 
         if (!file) {
@@ -15,10 +16,11 @@ class CreateImageUseCase {
         try {
             const uploadImage = await cloudinary.uploader.upload(file.path, {
                 resource_type: "image",
-                folder: "posts",
                 public_id: `post/${fName}`,
-                overwrite: true,
-                tags: "posts",
+            });
+
+            await client.image.create({
+                uploadImage,
             });
 
             return uploadImage;

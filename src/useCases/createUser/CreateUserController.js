@@ -1,4 +1,4 @@
-import { CreateUserCase } from "./CreateUserUseCase.js";
+import { CreateUserUseCase } from "./CreateUserUseCase.js";
 
 // Terminar o useCase do refreshTokem e testar as rotas
 
@@ -6,9 +6,9 @@ class CreateUserController {
     async handle(request, response) {
         const { username, email, password } = request.body;
 
-        const createUserCase = new CreateUserCase();
+        const createUserUseCase = new CreateUserUseCase();
 
-        const user = await createUserCase.execute({
+        const user = await createUserUseCase.execute({
             username,
             email,
             password,
