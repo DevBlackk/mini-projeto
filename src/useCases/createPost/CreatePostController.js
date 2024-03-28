@@ -9,6 +9,7 @@ class CreatePostController {
         const post = await createUserUseCase.execute({
             content,
             userId,
+            urlImage
         });
 
         return response.json(post);
