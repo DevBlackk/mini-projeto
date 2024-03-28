@@ -1,8 +1,8 @@
 import { client } from "../../config/prisma/prisma.js";
-import { CreateImageUseCase } from "./createImageUseCase.js";
+import { CreateImageUseCase } from "./CreateImageUseCase.js";
 
 class CreateImageController {
-    async execute(request, response) {
+    async handel(request, response) {
         const createImageUseCase = new CreateImageUseCase();
 
         if (request.fileValidationError) {

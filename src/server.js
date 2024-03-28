@@ -10,5 +10,5 @@ const createImageController = new CreateImageController()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post("/", upload, createImageController.execute);
+app.post("/", upload, createImageController.handel);
 app.listen(PORT, () => console.log(`Server running at ${PORT}`));
