@@ -1,9 +1,9 @@
 import { verify } from "jsonwebtoken";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
-export function ensureAuthenticated(request, response, next) {
+function ensureAuthenticated(request, response, next) {
     const authToken = request.headers.authorization;
 
     if (!authToken) {
@@ -24,3 +24,5 @@ export function ensureAuthenticated(request, response, next) {
         });
     }
 }
+
+export { ensureAuthenticated };
