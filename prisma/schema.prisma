@@ -40,7 +40,6 @@ model Post {
 
 model Image {
   id         String   @id @default(cuid())
-  name       String
   type       String
   url        String
   publicId   String

@@ -1,5 +1,4 @@
 import cloudinary from "../../config/cloudinary/cloudinary.js";
-import { client } from "../../config/prisma/prisma.js";
 
 class CreateImageUseCase {
     async execute(request, response) {
@@ -11,16 +10,12 @@ class CreateImageUseCase {
             });
         }
 
-        const fName = file.orinalname.split(".")[0];
+        const fName = file.originalname;
 
         try {
             const uploadImage = await cloudinary.uploader.upload(file.path, {
-                resource_type: "image",
+                resource_type: 'image',
                 public_id: `post/${fName}`,
-            });
-
-            await client.image.create({
-                uploadImage,
             });
 
             return uploadImage;

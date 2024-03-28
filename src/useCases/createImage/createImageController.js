@@ -1,3 +1,4 @@
+import { client } from "../../config/prisma/prisma.js";
 import { CreateImageUseCase } from "./createImageUseCase.js";
 
 class CreateImageController {
@@ -15,8 +16,19 @@ class CreateImageController {
             response
         );
 
+        const image = await client.image.create({
+            data: {
+                type: imageResponse.type,
+                url: imageResponse.secure_url,
+                publicId: imageResponse.public_id,
+            },
+        });
+
+        console.log(image);
+
         return response.status(200).json({
             imageResponse: imageResponse.secure_url,
+            data: image,
         });
     }
 }
