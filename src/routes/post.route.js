@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { CreateUserController } from "../useCases//createPost/CreatePostController.js";
+import { CreatePostController } from "../useCases//createPost/CreatePostController.js";
 import { ensureAuthenticated } from "../middlewares/ensureAuthenticated.js";
 
 const postRoutes = Router();
 
-const post = new CreateUserController();
+const post = new CreatePostController();
 
 postRoutes.post("/post", post.handle);
 

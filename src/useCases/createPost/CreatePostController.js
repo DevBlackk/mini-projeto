@@ -1,17 +1,18 @@
 import { CreatePostUseCase } from "./CreatePostUseCase.js";
 
-class CreateUserController {
+class CreatePostController {
     async handle(request, response) {
-        const { content } = request.body;
+        const { content, userId } = request.body;
 
         const createUserUseCase = new CreatePostUseCase();
 
-        const user = await createUserUseCase.execute({
-            content
+        const post = await createUserUseCase.execute({
+            content,
+            userId,
         });
 
-        return response.json(user);
+        return response.json(post);
     }
 }
 
-export { CreateUserController }
+export { CreatePostController }
